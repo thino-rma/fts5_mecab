@@ -155,7 +155,6 @@ static int mecabCreate(
 
   fts5_api *pApi = (fts5_api*)pContext;
   MecabTokenizer *p = 0;
-  mecab_t *mecab;
   p = sqlite3_malloc(sizeof(MecabTokenizer));
   if (p == NULL) {
     return SQLITE_NOMEM; 
@@ -169,6 +168,28 @@ static int mecabCreate(
   }
   p->verbose = verbose;
   p->stop789 = stop789;
+
+#ifdef DEBUG
+  /*
+  ** ** Implementation Help **
+  ** https://taku910.github.io/mecab/libmecab.html
+  */
+  // Dictionary info
+  if (verbose > 0) { // DEBUG LEVEL 1
+    const mecab_dictionary_info_t *d = mecab_dictionary_info(p->mecab);
+    for (; d; d = d->next) {
+      printf("mecab_dictionary_info()\n");
+      printf("  filename: %s\n", d->filename);
+      printf("  charset: %s\n", d->charset);
+      printf("  size: %d\n", d->size);
+      printf("  type: %d\n", d->type);
+      printf("  lsize: %d\n", d->lsize);
+      printf("  rsize: %d\n", d->rsize);
+      printf("  version: %d\n", d->version);
+    }
+  }
+#endif
+
   *ppOut = (Fts5Tokenizer*)p;
   return SQLITE_OK;
 }
@@ -409,7 +430,7 @@ static int mecabTokenize(
     }
 #endif
 
-#ifdef STOP798
+#ifdef STOP789
     if (!p->stop789 || node->posid > 9 || node->posid < 7) {
       rc = xToken(pCtx, 0, buf, nlen, offset, offset + nlen);
     #ifdef DEBUG
