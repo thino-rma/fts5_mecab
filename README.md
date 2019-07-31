@@ -14,18 +14,7 @@ make
 make install
 ```
 
-2. install CRF++ from source
-```
-cd $HOME/usr/src
-wget 'https://docs.google.com/uc?export=download&id=0B4y35FiV1wh7QVR6VXJ5dWExSTQ' -O CRF++-0.58.tar.gz
-tar xf CRF++-0.58.tar.gz
-cd CRF++-0.58/
-./configure --prefix=$HOME/usr
-make
-make install
-```
-
-3. install mecab from source
+2. install mecab from source
 ```
 cd $HOME/usr/src
 git clone https://github.com/taku910/mecab.git
@@ -35,7 +24,7 @@ make
 make install
 ```
 
-4. install mecab-ipadic
+3. install mecab-ipadic
 ```
 cd $HOME/usr/src
 wget 'https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7MWVlSDBCSXZMTXM' -O mecab-ipadic-2.7.0-20070801.tar.gz
@@ -46,7 +35,7 @@ make
 make install
 ```
 
-5. install mecab-ipadic-NEologd and edit mecabrc (Optional)
+4. install mecab-ipadic-NEologd and edit mecabrc (Optional)
 ```
 cd $HOME/usr/src
 git clone --depth 1 https://github.com/neologd/mecab-ipadic-neologd.git
